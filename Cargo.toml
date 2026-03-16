@@ -1,0 +1,11 @@
+[package]
+name = "ferrolog"
+version = "0.1.0"
+edition = "2021"
+description = "A lightweight Rust TUI log parser"
+
+[dependencies]
+ratatui = "0.29"
+crossterm = "0.28"
+regex = "1"
+chrono = "0.4"
