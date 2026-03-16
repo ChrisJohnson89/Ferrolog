@@ -1,0 +1,39 @@
+2024-01-15 08:00:01.234 [INFO] main - Application starting up
+2024-01-15 08:00:01.456 [INFO] config - Loading configuration from /etc/app/config.yaml
+2024-01-15 08:00:01.789 [DEBUG] config - Found 12 configuration keys
+2024-01-15 08:00:02.012 [INFO] db - Connecting to PostgreSQL at db.internal:5432
+2024-01-15 08:00:02.345 [DEBUG] db - Connection pool initialized with 10 connections
+2024-01-15 08:00:02.567 [INFO] db - Database migration check: schema is up to date
+2024-01-15 08:00:03.001 [INFO] http - Starting HTTP server on 0.0.0.0:8080
+2024-01-15 08:00:03.123 [INFO] http - TLS enabled with certificate /etc/ssl/app.crt
+2024-01-15 08:00:03.456 [INFO] main - Application ready, serving requests
+2024-01-15 08:01:15.789 [INFO] http - GET /api/v1/health 200 2ms
+2024-01-15 08:01:16.012 [DEBUG] auth - Token validation for user_id=1042
+2024-01-15 08:01:16.234 [INFO] http - GET /api/v1/users/1042 200 15ms
+2024-01-15 08:02:30.567 [WARN] http - Slow request: POST /api/v1/reports took 3200ms
+2024-01-15 08:02:31.890 [DEBUG] cache - Cache miss for key reports:daily:2024-01-15
+2024-01-15 08:02:32.123 [INFO] http - POST /api/v1/reports 200 3200ms
+2024-01-15 08:05:45.456 [ERROR] db - Query timeout after 30s: SELECT * FROM analytics WHERE date > '2024-01-01'
+2024-01-15 08:05:45.789 [WARN] http - Returning 504 for GET /api/v1/analytics
+2024-01-15 08:05:46.012 [INFO] metrics - Error rate spike detected: 5% (threshold: 2%)
+2024-01-15 08:10:00.345 [INFO] scheduler - Running scheduled task: cleanup_expired_sessions
+2024-01-15 08:10:01.678 [DEBUG] scheduler - Removed 847 expired sessions
+2024-01-15 08:10:01.901 [INFO] scheduler - Task cleanup_expired_sessions completed in 1.5s
+2024-01-15 08:15:30.234 [WARN] auth - Failed login attempt for user admin from 192.168.1.105
+2024-01-15 08:15:31.567 [WARN] auth - Failed login attempt for user admin from 192.168.1.105
+2024-01-15 08:15:32.890 [WARN] auth - Failed login attempt for user admin from 192.168.1.105
+2024-01-15 08:15:33.123 [ERROR] auth - Account locked: too many failed attempts for user admin
+2024-01-15 08:20:00.456 [INFO] http - GET /api/v1/health 200 1ms
+2024-01-15 08:30:00.789 [INFO] backup - Starting incremental backup
+2024-01-15 08:30:45.012 [INFO] backup - Backup completed: 2.3GB written to s3://backups/2024-01-15/
+2024-01-15 08:45:12.345 [DEBUG] cache - Cache hit ratio: 87.3% (last 1h)
+2024-01-15 09:00:00.678 [INFO] scheduler - Running scheduled task: generate_daily_report
+2024-01-15 09:00:15.901 [INFO] scheduler - Daily report generated and sent to 5 recipients
+2024-01-15 09:15:30.234 [TRACE] http - Request headers: Accept=application/json, Authorization=Bearer ***
+2024-01-15 09:15:30.567 [ERROR] http - 500 Internal Server Error: NullPointerException in ReportService.java:142
+2024-01-15 09:15:30.890 [ERROR] http - Stack trace: at com.app.service.ReportService.generate(ReportService.java:142)
+2024-01-15 09:20:00.123 [FATAL] db - Connection pool exhausted, all 10 connections in use
+2024-01-15 09:20:00.456 [FATAL] main - Service degraded: unable to process new requests
+2024-01-15 09:20:01.789 [INFO] alerts - Sending PagerDuty alert: DB_POOL_EXHAUSTED
+2024-01-15 09:21:00.012 [INFO] db - Connection released, pool recovering
+2024-01-15 09:21:00.345 [INFO] main - Service recovered, resuming normal operations
