@@ -6,25 +6,6 @@ A fast, lightweight TUI log viewer built in Rust. Open any log file and navigate
 [![Release](https://img.shields.io/github/v/release/ChrisJohnson89/Ferrolog)](https://github.com/ChrisJohnson89/Ferrolog/releases/latest)
 ![Platform](https://img.shields.io/badge/platform-linux%20%7C%20macOS-lightgrey)
 
-```
-┌ Ferrolog ──────────────────────────────────────────────────────────────────┐
-│ ferrolog  staging.enterasource.com-error_log  [1216/3208]  Filter: ERROR   │
-└────────────────────────────────────────────────────────────────────────────┘
-  #     Timestamp              Level    Source         Message
-  150   2026/01/15 01:29:57    ERROR                   FastCGI sent in stderr: PHP Fatal error...
-  157   2026/01/15 01:29:57    ERROR                   FastCGI sent in stderr: PHP Fatal error...
->> 243  2026/01/15 01:40:43    ERROR                   FastCGI sent in stderr: PHP Warning: require...
-
-┌ Detail ─────────────────────────────────────────────────────────────────────┐
-│ Line:  243                                                                   │
-│ Level: ERROR                                                                 │
-│ Time:  2026/01/15 01:40:43                                                   │
-│                                                                              │
-│ Raw:                                                                         │
-│ [error] 1843380#1843380: *2955 FastCGI sent in stderr: "PHP message:...      │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
-
 ## Install
 
 ```bash
