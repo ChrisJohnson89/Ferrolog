@@ -1,3 +1,6 @@
+<div align="center">
+  <img src="assets/logo.png" alt="Ferrolog" width="180" />
+
 # Ferrolog
 
 A fast, lightweight TUI log viewer built in Rust. Open any log file and navigate, search, and filter entries without leaving your terminal.
@@ -5,6 +8,8 @@ A fast, lightweight TUI log viewer built in Rust. Open any log file and navigate
 ![Rust](https://img.shields.io/badge/rust-stable-orange)
 [![Release](https://img.shields.io/github/v/release/ChrisJohnson89/Ferrolog)](https://github.com/ChrisJohnson89/Ferrolog/releases/latest)
 ![Platform](https://img.shields.io/badge/platform-linux%20%7C%20macOS-lightgrey)
+
+</div>
 
 ## Install
 
