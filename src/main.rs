@@ -14,11 +14,16 @@ use std::{env, fs, io, path::Path, process};
 fn main() -> io::Result<()> {
     let args: Vec<String> = env::args().collect();
 
-    if args.len() < 2 {
+    if args.len() < 2 || args[1] == "--help" || args[1] == "-h" {
         eprintln!("Usage: ferrolog <logfile>");
         eprintln!();
         eprintln!("A lightweight TUI log viewer");
         process::exit(1);
+    }
+
+    if args[1] == "--version" || args[1] == "-V" {
+        println!("ferrolog {}", env!("CARGO_PKG_VERSION"));
+        return Ok(());
     }
 
     let filepath = &args[1];
