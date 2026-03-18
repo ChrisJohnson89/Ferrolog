@@ -65,6 +65,11 @@ fn main() -> io::Result<()> {
             (content, fname, Some(path_str.clone()))
         }
     } else {
+        if follow_mode {
+            eprintln!("Error: -f (follow mode) requires a file path");
+            eprintln!("Usage: ferrolog -f <logfile>");
+            process::exit(1);
+        }
         // No file argument: read from stdin
         let mut content = String::new();
         io::stdin().read_to_string(&mut content)?;
