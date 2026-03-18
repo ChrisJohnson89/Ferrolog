@@ -114,8 +114,18 @@ impl App {
         }
         self.last_file_len = file_len;
 
-        let content = std::fs::read_to_string(&path)?;
+        // Use read_to_string lossy equivalent: read bytes then convert
+        let bytes = match std::fs::read(&path) {
+            Ok(b) => b,
+            Err(_) => return Ok(()), // transient error, skip this poll
+        };
+        let content = String::from_utf8_lossy(&bytes).into_owned();
         let all_lines: Vec<&str> = content.lines().collect();
+
+        // Handle log rotation / truncation: reset if file has fewer lines than we've seen
+        if all_lines.len() < self.last_line_count {
+            self.last_line_count = 0;
+        }
 
         if all_lines.len() > self.last_line_count {
             let parser = LogParser::new();
