@@ -65,6 +65,11 @@ fn main() -> io::Result<()> {
             (content, fname, Some(path_str.clone()))
         }
     } else {
+        if follow_mode {
+            eprintln!("Error: -f (follow mode) requires a file path");
+            eprintln!("Usage: ferrolog -f <logfile>");
+            process::exit(1);
+        }
         // No file argument: read from stdin
         let mut content = String::new();
         io::stdin().read_to_string(&mut content)?;
@@ -89,6 +94,18 @@ fn main() -> io::Result<()> {
     execute!(stdout, EnterAlternateScreen, EnableMouseCapture)?;
     let backend = CrosstermBackend::new(stdout);
     let mut terminal = Terminal::new(backend)?;
+
+    // Ensure terminal is restored even on panic
+    let original_hook = std::panic::take_hook();
+    std::panic::set_hook(Box::new(move |info| {
+        let _ = crossterm::terminal::disable_raw_mode();
+        let _ = crossterm::execute!(
+            io::stdout(),
+            crossterm::terminal::LeaveAlternateScreen,
+            crossterm::event::DisableMouseCapture,
+        );
+        original_hook(info);
+    }));
 
     let mut app = App::new(entries, filename, follow_mode, filepath);
 
